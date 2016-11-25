@@ -6,8 +6,8 @@
             </div>
             <div class="panel-body">
               <div class="btn-group-vertical btn-group full-width" role="group">
-                <button type="button" class="btn btn-default">Flur</button>
-                <button type="button" class="btn btn-default">Wohnzimmer</button>
+                <button type="button" class="btn btn-default" data-light="2" id="toggleCorridorBtn">Flur</button>
+                <button type="button" class="btn btn-default" data-light="1" id="toggleLoungeBtn">Wohnzimmer</button>
               </div> 
             </div>
           </div>
