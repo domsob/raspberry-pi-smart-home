@@ -1,9 +1,9 @@
 <?php
 
-  function changeLightState($light, $on, $sat = '200', $bri = '150', $hue = '13524') {
+  function changeLightState($light, $on, $sat = '200', $bri = '150', $hue = '13524', $effect = 'none') {
     include('config.php');
     $curl = curl_init('http://'.$lightHost.'/api/'.$userToken.'/lights/'.$light.'/state');
-    $data = '{"on":'.$on.', "sat":'.$sat.', "bri":'.$bri.',"hue":'.$hue.'}';
+    $data = '{"on":'.$on.', "sat":'.$sat.', "bri":'.$bri.',"hue":'.$hue.',"effect":"'.$effect.'"}';
     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
     curl_setopt($curl, CURLOPT_HEADER, false);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -60,6 +60,8 @@
     } else {
       alternatingLights($_GET['hue'], $_GET['loops']);
     }
+  } elseif(count($_GET) == 3) {
+    changeLightState($_GET['light'], 'true', '254', $_GET['bri'], '65000', $_GET['effect']);
   } elseif(count($_GET) == 5) {
     changeLightState($_GET['light'], $_GET['on'], $_GET['sat'], $_GET['bri'], $_GET['hue']);
   } else {

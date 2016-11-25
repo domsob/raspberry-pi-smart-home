@@ -20,6 +20,11 @@ $(document).ready(function() {
     $.get(lightsRestUri + 'light=' + light + '&on=' + on + '&sat=' + sat + '&bri=' + bri + '&hue=' + hue);
   }
 
+  $('button.set-light').click(function() {
+    var self = $(this);
+    setLight(self.attr('data-light'), self.attr('data-on'), self.attr('data-sat'), self.attr('data-bri'), self.attr('data-hue'));
+  });
+
   $('#toggleCorridorBtn, #toggleLoungeBtn').click(function() {
     toggleLight($(this).attr('data-light'));
   });
@@ -30,6 +35,10 @@ $(document).ready(function() {
 
   $('#alternateBlueBtn, #alternateYellowBtn, #alternateRedBtn').click(function() {
     alternatingLights($(this).attr('data-hue'), $('#alternateLoops').val());
+  }); 
+
+  $('#rainbowLightCorridorBtn, #rainbowLightLoungeBtn').click(function() {
+    $.get(lightsRestUri + 'light=' + $(this).attr('data-light') + '&bri=' + $('#brightnessValueInput').val() + '&effect=' + 'colorloop');
   }); 
 
 });
